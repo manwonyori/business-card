@@ -16,6 +16,15 @@
   },
   "employees": [
     {
+      "id": "choihyunmok",
+      "name": "최현목",
+      "title": "마케팅 크리에이터 총괄대표",
+      "phone": "010-2599-2311",
+      "email": "chmnammae@gmail.com",
+      "profileImage": null,
+      "active": true
+    },
+    {
       "id": "leejinyong",
       "name": "이진용",
       "title": "운영본부",
@@ -24,41 +33,5 @@
       "profileImage": null,
       "active": true
     },
-    {
-      "id": "kimcheolsu",
-      "name": "김철수",
-      "title": "마케팅팀",
-      "phone": "010-1234-5678",
-      "email": "kim@manwonyori.com",
-      "profileImage": null,
-      "active": true
-    },
-    {
-      "id": "parkminjung",
-      "name": "박민정",
-      "title": "고객지원팀",
-      "phone": "010-8765-4321",
-      "email": "park@manwonyori.com",
-      "profileImage": null,
-      "active": true
-    },
-    {
-      "id": "choiyounghee",
-      "name": "최영희",
-      "title": "메뉴개발팀",
-      "phone": "010-2468-1357",
-      "email": "choi@manwonyori.com",
-      "profileImage": null,
-      "active": true
-    },
-    {
-      "id": "jungdaehan",
-      "name": "정대한",
-      "title": "품질관리팀",
-      "phone": "010-1357-2468",
-      "email": "jung@manwonyori.com",
-      "profileImage": null,
-      "active": true
-    }
   ]
 }
