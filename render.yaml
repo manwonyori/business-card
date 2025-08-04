@@ -4,8 +4,9 @@ services:
     name: manwon-business-card
     runtime: static
     buildCommand: ""  # 정적 사이트이므로 빌드 명령어 불필요
-    staticPublishPath: ./
+    staticPublishPath: ./business-card
     pullRequestPreviewsEnabled: true
+    autoDeploy: true  # GitHub 푸시 시 자동 배포 활성화
     headers:
       - path: /*
         name: X-Frame-Options
