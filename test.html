@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>만원요리 최씨남매 - 테스트</title>
+</head>
+<body style="background: #0f172a; color: white; padding: 2rem; font-family: sans-serif;">
+    <h1>📋 디버깅 정보</h1>
+    
+    <h2>1. 현재 URL</h2>
+    <p id="currentUrl"></p>
+    
+    <h2>2. employees.json 테스트</h2>
+    <pre id="jsonTest" style="background: #1e293b; padding: 1rem; border-radius: 8px;"></pre>
+    
+    <h2>3. 직원 링크 테스트</h2>
+    <ul>
+        <li><a href="./card.html?id=choihyunmok" style="color: #f59e0b;">최현목 명함</a></li>
+        <li><a href="./card.html?id=leejinyong" style="color: #f59e0b;">이진용 명함</a></li>
+        <li><a href="./data/employees.json" style="color: #f59e0b;">employees.json 직접 보기</a></li>
+    </ul>
+    
+    <script>
+        // 현재 URL 표시
+        document.getElementById('currentUrl').textContent = window.location.href;
+        
+        // JSON 파일 테스트
+        fetch('./data/employees.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById('jsonTest').textContent = 
+                    '✅ JSON 로드 성공!\n' + JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                document.getElementById('jsonTest').textContent = 
+                    '❌ JSON 로드 실패!\n' + error.message;
+            });
+    </script>
+</body>
+</html>
