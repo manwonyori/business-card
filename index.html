@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>만원요리 최씨남매 - 이진용</title>
+    <title>만원요리 최씨남매 - 직원 명함</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
@@ -17,497 +17,356 @@
             font-family: 'Inter', 'Noto Sans KR', sans-serif;
             background: #0f172a;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
+            padding: 2rem 1rem;
             line-height: 1.6;
         }
         
-        .card {
-            background: #1e293b;
-            max-width: 340px;
-            width: 100%;
-            padding: 2.5rem 2rem;
-            border-radius: 12px;
-            border: 1px solid #334155;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%);
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
         .header {
             text-align: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
         }
         
-        .brand-name {
-            font-size: 1.25rem;
-            font-weight: 500;
+        .logo {
+            font-size: 2rem;
+            font-weight: 600;
             color: #f59e0b;
             margin-bottom: 0.5rem;
             letter-spacing: -0.02em;
         }
         
         .tagline {
-            font-size: 0.875rem;
+            font-size: 1rem;
             color: #94a3b8;
             font-weight: 300;
-            margin-bottom: 2rem;
         }
         
         .divider {
-            width: 40px;
-            height: 1px;
+            width: 60px;
+            height: 2px;
             background: #f59e0b;
-            margin: 0 auto 2rem;
+            margin: 2rem auto;
         }
         
-        .name-section {
+        .section-title {
+            font-size: 1.5rem;
+            color: #e2e8f0;
             text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 500;
         }
         
-        .company {
+        .employee-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .employee-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .employee-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .employee-card:hover::before {
+            transform: translateX(0);
+        }
+        
+        .employee-card:hover {
+            border-color: #f59e0b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+        }
+        
+        .employee-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .employee-avatar {
+            width: 60px;
+            height: 60px;
+            background: #334155;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #f59e0b;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .employee-details {
+            flex: 1;
+        }
+        
+        .employee-name {
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: #ffffff;
+            margin-bottom: 0.25rem;
+        }
+        
+        .employee-title {
             font-size: 0.875rem;
-            color: #cbd5e1;
-            font-weight: 400;
+            color: #94a3b8;
             margin-bottom: 0.5rem;
         }
         
-        .name {
-            font-size: 1.125rem;
-            color: #ffffff;
-            font-weight: 500;
-            letter-spacing: -0.02em;
-        }
-        
-        .contact-section {
-            margin-top: 2.5rem;
+        .employee-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            font-size: 0.8rem;
+            color: #cbd5e1;
         }
         
         .contact-item {
             display: flex;
             align-items: center;
-            padding: 1rem 0;
-            border-bottom: 1px solid #334155;
-            text-decoration: none;
-            color: #e2e8f0;
-            font-size: 0.9rem;
-            font-weight: 400;
-            transition: all 0.2s ease;
-        }
-        
-        .contact-item:hover,
-        .contact-item:focus {
-            color: #f59e0b;
-            background: rgba(245, 158, 11, 0.05);
-            margin: 0 -1rem;
-            padding-left: 1rem;
-            padding-right: 1rem;
-            border-radius: 6px;
-            outline: 2px solid #f59e0b;
-            outline-offset: 2px;
-        }
-        
-        .contact-item:last-child {
-            border-bottom: none;
+            gap: 0.5rem;
         }
         
         .contact-icon {
-            width: 16px;
+            color: #f59e0b;
+            font-size: 0.75rem;
+        }
+        
+        .loading {
             text-align: center;
             color: #f59e0b;
-            margin-right: 1rem;
-            font-size: 0.875rem;
+            font-size: 1.25rem;
+            margin: 3rem 0;
         }
         
-        .contact-content {
-            flex: 1;
+        .error {
+            background: #1e293b;
+            border: 1px solid #ef4444;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            color: #ef4444;
+            margin: 3rem auto;
+            max-width: 500px;
         }
         
-        .contact-label {
-            display: block;
-            font-size: 0.75rem;
-            color: #94a3b8;
-            margin-bottom: 0.125rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        .contact-value {
-            color: #e2e8f0;
-        }
-        
-        .social-section {
-            margin-top: 2rem;
+        .footer {
+            text-align: center;
+            margin-top: 4rem;
             padding-top: 2rem;
             border-top: 1px solid #334155;
         }
         
+        .company-info {
+            color: #94a3b8;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+        
         .social-links {
             display: flex;
-            gap: 1.5rem;
+            gap: 2rem;
             justify-content: center;
+            margin-bottom: 1rem;
         }
         
         .social-link {
-            font-size: 0.875rem;
             color: #94a3b8;
             text-decoration: none;
-            font-weight: 400;
+            font-size: 0.875rem;
             transition: color 0.2s ease;
-            padding: 0.5rem 0;
         }
         
-        .social-link:hover,
-        .social-link:focus {
+        .social-link:hover {
             color: #f59e0b;
-            outline: 2px solid #f59e0b;
-            outline-offset: 2px;
         }
         
-        .address {
-            font-size: 0.8rem;
-            color: #94a3b8;
-            line-height: 1.4;
-            text-align: center;
-            margin-top: 1.5rem;
-            padding: 1rem;
-            background: rgba(51, 65, 85, 0.3);
-            border-radius: 8px;
-            border: 1px solid #334155;
-            transition: all 0.2s ease;
-            text-decoration: none;
-            cursor: pointer;
-            display: block;
+        .quick-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
         }
         
-        .address:hover,
-        .address:focus {
+        .action-button {
             background: rgba(245, 158, 11, 0.1);
-            border-color: #f59e0b;
-            color: #cbd5e1;
-            outline: 2px solid #f59e0b;
-            outline-offset: 2px;
-        }
-        
-        .address-line {
-            display: block;
-            margin-bottom: 0.25rem;
-        }
-        
-        .address-line:last-child {
-            margin-bottom: 0;
-        }
-        
-        .save-contact {
-            margin-top: 2rem;
-            width: 100%;
-            padding: 0.875rem;
-            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
-            color: #0f172a;
-            border: none;
-            border-radius: 8px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            letter-spacing: 0.025em;
-        }
-        
-        .save-contact:hover,
-        .save-contact:focus {
-            background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
-            outline: 2px solid #f59e0b;
-            outline-offset: 2px;
-        }
-        
-        .save-contact:active {
-            transform: translateY(0);
-        }
-        
-        .share-contact {
-            margin-top: 1rem;
-            width: 100%;
-            padding: 0.875rem;
-            background: rgba(51, 65, 85, 0.5);
-            color: #e2e8f0;
-            border: 1px solid #334155;
-            border-radius: 8px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            letter-spacing: 0.025em;
-        }
-        
-        .share-contact:hover,
-        .share-contact:focus {
-            background: rgba(51, 65, 85, 0.8);
-            border-color: #f59e0b;
+            border: 1px solid #f59e0b;
             color: #f59e0b;
-            outline: 2px solid #f59e0b;
-            outline-offset: 2px;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
-        /* 모바일 최적화 */
-        @media (max-width: 375px) {
-            .card {
-                padding: 2rem 1.5rem;
-                margin: 0.5rem;
-            }
-            
-            .social-links {
-                gap: 1rem;
-            }
-            
-            .brand-name {
-                font-size: 1.125rem;
-            }
-            
-            .name {
-                font-size: 1rem;
-            }
-            
-            .address {
-                font-size: 0.75rem;
-                padding: 0.875rem;
-            }
-            
-            .address-line {
-                margin-bottom: 0.125rem;
-            }
+        .action-button:hover {
+            background: #f59e0b;
+            color: #0f172a;
+            transform: translateY(-1px);
         }
         
-        /* 아이폰 SE 대응 */
-        @media (max-width: 320px) {
-            .card {
-                padding: 1.5rem 1rem;
+        @media (max-width: 768px) {
+            .employee-grid {
+                grid-template-columns: 1fr;
             }
             
-            .header {
-                margin-bottom: 2rem;
+            .logo {
+                font-size: 1.5rem;
             }
             
-            .contact-section {
-                margin-top: 2rem;
-            }
-            
-            .address {
-                font-size: 0.7rem;
-                padding: 0.75rem;
-            }
-        }
-        
-        /* 큰 모바일 화면 대응 */
-        @media (min-width: 414px) {
-            .card {
-                max-width: 380px;
-            }
-        }
-        
-        /* PDF 출력 최적화 */
-        @media print {
-            body {
-                background: white;
-                padding: 0;
-            }
-            
-            .card {
-                background: white;
-                border: 1px solid #ddd;
-                box-shadow: none;
-                max-width: none;
-                width: 100%;
-            }
-            
-            .brand-name, .contact-item:hover {
-                color: #333 !important;
+            .section-title {
+                font-size: 1.25rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <div class="header">
-            <h1 class="brand-name">만원요리 최씨남매</h1>
+    <div class="container">
+        <header class="header">
+            <h1 class="logo">만원요리 최씨남매</h1>
             <p class="tagline">만원으로 즐기는 따뜻한 한 끼</p>
             <div class="divider"></div>
-            <div class="name-section">
-                <div class="company">주식회사 값진한끼</div>
-                <div class="name">운영본부 이진용</div>
+        </header>
+        
+        <div class="quick-actions">
+            <a href="lee-jinyong.html" class="action-button">
+                <span>📇</span>
+                <span>이진용 대표 명함</span>
+            </a>
+            <a href="https://www.manwonyori.com" target="_blank" class="action-button">
+                <span>🌐</span>
+                <span>공식 웹사이트</span>
+            </a>
+            <a href="https://www.youtube.com/@만원요리최씨남매" target="_blank" class="action-button">
+                <span>📺</span>
+                <span>YouTube 채널</span>
+            </a>
+        </div>
+        
+        <section>
+            <h2 class="section-title">직원 명함</h2>
+            
+            <div class="loading" id="loading">직원 정보를 불러오는 중...</div>
+            
+            <div class="employee-grid" id="employeeGrid" style="display: none;">
+                <!-- 직원 카드가 동적으로 생성됩니다 -->
             </div>
-        </div>
-        
-        <div class="contact-section">
-            <a href="tel:010-9770-2885" class="contact-item">
-                <div class="contact-icon">📞</div>
-                <div class="contact-content">
-                    <span class="contact-label">전화</span>
-                    <div class="contact-value">010-9770-2885</div>
-                </div>
-            </a>
             
-            <a href="mailto:we@manwonyori.com" class="contact-item">
-                <div class="contact-icon">✉️</div>
-                <div class="contact-content">
-                    <span class="contact-label">이메일</span>
-                    <div class="contact-value">we@manwonyori.com</div>
-                </div>
-            </a>
-            
-            <a href="https://www.manwonyori.com" target="_blank" class="contact-item">
-                <div class="contact-icon">🌐</div>
-                <div class="contact-content">
-                    <span class="contact-label">웹사이트</span>
-                    <div class="contact-value">manwonyori.com</div>
-                </div>
-            </a>
-        </div>
+            <div class="error" id="error" style="display: none;">
+                직원 정보를 불러오는 데 실패했습니다.
+            </div>
+        </section>
         
-        <div class="social-section">
+        <footer class="footer">
+            <div class="company-info">
+                주식회사 값진한끼 | 경기도 파주시 경의로 1246, 11층 1105-19호
+            </div>
             <div class="social-links">
                 <a href="https://www.youtube.com/@만원요리최씨남매" target="_blank" class="social-link">YouTube</a>
                 <a href="https://www.instagram.com/knammae/" target="_blank" class="social-link">Instagram</a>
+                <a href="mailto:we@manwonyori.com" class="social-link">Contact</a>
             </div>
-        </div>
-        
-        <a href="https://maps.google.com/?q=경기도+파주시+경의로+1246" target="_blank" class="address">
-            <div class="address-icon" style="margin-bottom: 0.5rem;">📍</div>
-            <span class="address-line">경기도 파주시 경의로 1246</span>
-            <span class="address-line">11층 1105-19호 (와동동)</span>
-        </a>
-        
-        <button onclick="saveContact()" class="save-contact">
-            연락처 저장하기
-        </button>
-        
-        <button onclick="shareCard()" class="share-contact" id="shareBtn" style="display: none;">
-            명함 공유하기
-        </button>
+        </footer>
     </div>
 
     <script>
-        let touchTimeout;
-        
-        function saveContact() {
+        // 직원 데이터 로드 및 표시
+        async function loadEmployees() {
             try {
-                const vcard = `BEGIN:VCARD
-VERSION:3.0
-FN:이진용
-ORG:주식회사 값진한끼
-TITLE:만원요리 최씨남매 운영본부
-TEL;TYPE=CELL:010-9770-2885
-EMAIL;TYPE=WORK:we@manwonyori.com
-URL:https://www.manwonyori.com
-URL;TYPE=YouTube:https://www.youtube.com/@만원요리최씨남매
-URL;TYPE=Instagram:https://www.instagram.com/knammae/
-ADR;TYPE=WORK:;;경기도 파주시 경의로 1246, 11층 1105-19호;와동동;;;한국
-NOTE:만원으로 즐기는 따뜻한 한 끼 - 만원요리 최씨남매
-END:VCARD`;
-
-                const userAgent = navigator.userAgent;
-                const isIOS = /iPad|iPhone|iPod/.test(userAgent);
-                const isAndroid = /Android/.test(userAgent);
+                const response = await fetch('./data/employees.json');
+                const data = await response.json();
                 
-                if (isIOS) {
-                    const dataUrl = 'data:text/vcard;charset=utf-8,' + encodeURIComponent(vcard);
-                    window.location.href = dataUrl;
-                } else {
-                    downloadVCard(vcard);
-                }
-                
-                showSaveMessage();
+                displayEmployees(data.employees.filter(emp => emp.active));
                 
             } catch (error) {
-                console.error('연락처 저장 오류:', error);
-                alert('연락처 저장 중 오류가 발생했습니다. 다시 시도해주세요.');
+                console.error('데이터 로드 오류:', error);
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('error').style.display = 'block';
             }
         }
         
-        function downloadVCard(vcard) {
-            const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = '이진용_만원요리최씨남매.vcf';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);
-        }
-        
-        function showSaveMessage() {
-            const btn = event.target;
-            const originalText = btn.textContent;
-            btn.textContent = '저장 완료 ✓';
-            btn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+        // 직원 카드 생성
+        function displayEmployees(employees) {
+            const grid = document.getElementById('employeeGrid');
+            grid.innerHTML = '';
             
-            setTimeout(() => {
-                btn.textContent = originalText;
-                btn.style.background = 'linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%)';
-            }, 3000);
-        }
-        
-        function shareCard() {
-            if (navigator.share) {
-                navigator.share({
-                    title: '만원요리 최씨남매 - 이진용',
-                    text: '만원요리 최씨남매 운영본부 이진용입니다. 디지털 명함을 확인해보세요!',
-                    url: window.location.href
-                }).catch(fallbackShare);
-            } else {
-                fallbackShare();
-            }
-        }
-        
-        function fallbackShare() {
-            const textArea = document.createElement('textarea');
-            textArea.value = window.location.href;
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textArea);
+            employees.forEach(employee => {
+                const card = createEmployeeCard(employee);
+                grid.appendChild(card);
+            });
             
-            const btn = document.getElementById('shareBtn');
-            const originalText = btn.textContent;
-            btn.textContent = '링크가 복사되었습니다 ✓';
-            
-            setTimeout(() => {
-                btn.textContent = originalText;
-            }, 2000);
+            document.getElementById('loading').style.display = 'none';
+            grid.style.display = 'grid';
         }
-
-        document.addEventListener('touchstart', function(e) {
-            clearTimeout(touchTimeout);
-            if (e.target.closest('.contact-item')) {
-                e.target.closest('.contact-item').style.opacity = '0.7';
-            }
-        });
-
-        document.addEventListener('touchend', function(e) {
-            if (e.target.closest('.contact-item')) {
-                touchTimeout = setTimeout(() => {
-                    e.target.closest('.contact-item').style.opacity = '1';
-                }, 100);
-            }
-        });
         
+        // 개별 직원 카드 생성
+        function createEmployeeCard(employee) {
+            const card = document.createElement('a');
+            card.href = `card.html?id=${employee.id}`;
+            card.className = 'employee-card';
+            
+            // 이름의 첫 글자 추출
+            const initial = employee.name.charAt(0);
+            
+            card.innerHTML = `
+                <div class="employee-info">
+                    <div class="employee-avatar">
+                        ${initial}
+                    </div>
+                    <div class="employee-details">
+                        <div class="employee-name">${employee.name}</div>
+                        <div class="employee-title">${employee.title}</div>
+                        <div class="employee-contact">
+                            <div class="contact-item">
+                                <span class="contact-icon">📞</span>
+                                <span>${employee.phone}</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-icon">✉️</span>
+                                <span>${employee.email}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+        
+        // 페이지 로드 시 실행
         document.addEventListener('DOMContentLoaded', function() {
-            if (navigator.share || navigator.clipboard) {
-                document.getElementById('shareBtn').style.display = 'block';
-            }
+            loadEmployees();
         });
     </script>
 </body>

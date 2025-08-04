@@ -1,0 +1,64 @@
+{
+  "company": {
+    "name": "만원요리 최씨남매",
+    "fullName": "주식회사 값진한끼",
+    "tagline": "만원으로 즐기는 따뜻한 한 끼",
+    "website": "https://www.manwonyori.com",
+    "address": {
+      "street": "경기도 파주시 경의로 1246",
+      "detail": "11층 1105-19호 (와동동)",
+      "mapUrl": "https://maps.google.com/?q=경기도+파주시+경의로+1246"
+    },
+    "social": {
+      "youtube": "https://www.youtube.com/@만원요리최씨남매",
+      "instagram": "https://www.instagram.com/knammae/"
+    }
+  },
+  "employees": [
+    {
+      "id": "leejinyong",
+      "name": "이진용",
+      "title": "운영본부",
+      "phone": "010-9770-2885",
+      "email": "we@manwonyori.com",
+      "profileImage": null,
+      "active": true
+    },
+    {
+      "id": "kimcheolsu",
+      "name": "김철수",
+      "title": "마케팅팀",
+      "phone": "010-1234-5678",
+      "email": "kim@manwonyori.com",
+      "profileImage": null,
+      "active": true
+    },
+    {
+      "id": "parkminjung",
+      "name": "박민정",
+      "title": "고객지원팀",
+      "phone": "010-8765-4321",
+      "email": "park@manwonyori.com",
+      "profileImage": null,
+      "active": true
+    },
+    {
+      "id": "choiyounghee",
+      "name": "최영희",
+      "title": "메뉴개발팀",
+      "phone": "010-2468-1357",
+      "email": "choi@manwonyori.com",
+      "profileImage": null,
+      "active": true
+    },
+    {
+      "id": "jungdaehan",
+      "name": "정대한",
+      "title": "품질관리팀",
+      "phone": "010-1357-2468",
+      "email": "jung@manwonyori.com",
+      "profileImage": null,
+      "active": true
+    }
+  ]
+}

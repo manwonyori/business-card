@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>만원요리 최씨남매 - 디지털 명함</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            background: #0f172a;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            line-height: 1.6;
+        }
+        
+        .loading {
+            color: #f59e0b;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        
+        .error {
+            background: #1e293b;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #ef4444;
+            text-align: center;
+            max-width: 400px;
+        }
+        
+        .error h2 {
+            color: #ef4444;
+            margin-bottom: 1rem;
+        }
+        
+        .error p {
+            color: #e2e8f0;
+            margin-bottom: 1.5rem;
+        }
+        
+        .error a {
+            color: #f59e0b;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .error a:hover {
+            text-decoration: underline;
+        }
+        
+        .card {
+            background: #1e293b;
+            max-width: 340px;
+            width: 100%;
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            position: relative;
+            overflow: hidden;
+            display: none;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .brand-name {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #f59e0b;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .tagline {
+            font-size: 0.875rem;
+            color: #94a3b8;
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+        
+        .divider {
+            width: 40px;
+            height: 1px;
+            background: #f59e0b;
+            margin: 0 auto 2rem;
+        }
+        
+        .name-section {
+            text-align: center;
+        }
+        
+        .company {
+            font-size: 0.875rem;
+            color: #cbd5e1;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+        
+        .name {
+            font-size: 1.125rem;
+            color: #ffffff;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+        
+        .contact-section {
+            margin-top: 2.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #334155;
+            text-decoration: none;
+            color: #e2e8f0;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: all 0.2s ease;
+        }
+        
+        .contact-item:hover,
+        .contact-item:focus {
+            color: #f59e0b;
+            background: rgba(245, 158, 11, 0.05);
+            margin: 0 -1rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            border-radius: 6px;
+            outline: 2px solid #f59e0b;
+            outline-offset: 2px;
+        }
+        
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+        
+        .contact-icon {
+            width: 16px;
+            text-align: center;
+            color: #f59e0b;
+            margin-right: 1rem;
+            font-size: 0.875rem;
+        }
+        
+        .contact-content {
+            flex: 1;
+        }
+        
+        .contact-label {
+            display: block;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin-bottom: 0.125rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .contact-value {
+            color: #e2e8f0;
+        }
+        
+        .social-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+        
+        .social-link {
+            font-size: 0.875rem;
+            color: #94a3b8;
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.2s ease;
+            padding: 0.5rem 0;
+        }
+        
+        .social-link:hover,
+        .social-link:focus {
+            color: #f59e0b;
+            outline: 2px solid #f59e0b;
+            outline-offset: 2px;
+        }
+        
+        .address {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            line-height: 1.4;
+            text-align: center;
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(51, 65, 85, 0.3);
+            border-radius: 8px;
+            border: 1px solid #334155;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            cursor: pointer;
+            display: block;
+        }
+        
+        .address:hover,
+        .address:focus {
+            background: rgba(245, 158, 11, 0.1);
+            border-color: #f59e0b;
+            color: #cbd5e1;
+            outline: 2px solid #f59e0b;
+            outline-offset: 2px;
+        }
+        
+        .address-line {
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        
+        .address-line:last-child {
+            margin-bottom: 0;
+        }
+        
+        .save-contact {
+            margin-top: 2rem;
+            width: 100%;
+            padding: 0.875rem;
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+            color: #0f172a;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            letter-spacing: 0.025em;
+        }
+        
+        .save-contact:hover,
+        .save-contact:focus {
+            background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+            outline: 2px solid #f59e0b;
+            outline-offset: 2px;
+        }
+        
+        .save-contact:active {
+            transform: translateY(0);
+        }
+        
+        .share-contact {
+            margin-top: 1rem;
+            width: 100%;
+            padding: 0.875rem;
+            background: rgba(51, 65, 85, 0.5);
+            color: #e2e8f0;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            letter-spacing: 0.025em;
+        }
+        
+        .share-contact:hover,
+        .share-contact:focus {
+            background: rgba(51, 65, 85, 0.8);
+            border-color: #f59e0b;
+            color: #f59e0b;
+            outline: 2px solid #f59e0b;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading" id="loading">로딩 중...</div>
+    
+    <div class="error" id="error" style="display: none;">
+        <h2>명함을 찾을 수 없습니다</h2>
+        <p id="errorMessage"></p>
+        <a href="./">직원 목록으로 돌아가기</a>
+    </div>
+    
+    <div class="card" id="card">
+        <div class="header">
+            <h1 class="brand-name">만원요리 최씨남매</h1>
+            <p class="tagline">만원으로 즐기는 따뜻한 한 끼</p>
+            <div class="divider"></div>
+            <div class="name-section">
+                <div class="company">주식회사 값진한끼</div>
+                <div class="name"><span id="employeeTitle"></span> <span id="employeeName"></span></div>
+            </div>
+        </div>
+        
+        <div class="contact-section">
+            <a href="#" id="phoneLink" class="contact-item">
+                <div class="contact-icon">📞</div>
+                <div class="contact-content">
+                    <span class="contact-label">전화</span>
+                    <div class="contact-value" id="phoneNumber"></div>
+                </div>
+            </a>
+            
+            <a href="#" id="emailLink" class="contact-item">
+                <div class="contact-icon">✉️</div>
+                <div class="contact-content">
+                    <span class="contact-label">이메일</span>
+                    <div class="contact-value" id="emailAddress"></div>
+                </div>
+            </a>
+            
+            <a href="https://www.manwonyori.com" target="_blank" class="contact-item">
+                <div class="contact-icon">🌐</div>
+                <div class="contact-content">
+                    <span class="contact-label">웹사이트</span>
+                    <div class="contact-value">manwonyori.com</div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="social-section">
+            <div class="social-links">
+                <a href="https://www.youtube.com/@만원요리최씨남매" target="_blank" class="social-link">YouTube</a>
+                <a href="https://www.instagram.com/knammae/" target="_blank" class="social-link">Instagram</a>
+            </div>
+        </div>
+        
+        <a href="https://maps.google.com/?q=경기도+파주시+경의로+1246" target="_blank" class="address">
+            <div class="address-icon" style="margin-bottom: 0.5rem;">📍</div>
+            <span class="address-line">경기도 파주시 경의로 1246</span>
+            <span class="address-line">11층 1105-19호 (와동동)</span>
+        </a>
+        
+        <button onclick="saveContact()" class="save-contact">
+            연락처 저장하기
+        </button>
+        
+        <button onclick="shareCard()" class="share-contact" id="shareBtn" style="display: none;">
+            명함 공유하기
+        </button>
+    </div>
+
+    <script>
+        let currentEmployee = null;
+        let companyData = null;
+        
+        // URL 파라미터에서 직원 ID 가져오기
+        function getEmployeeId() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('id');
+        }
+        
+        // 직원 데이터 로드
+        async function loadEmployeeData() {
+            try {
+                const response = await fetch('./data/employees.json');
+                const data = await response.json();
+                
+                companyData = data.company;
+                const employeeId = getEmployeeId();
+                
+                if (!employeeId) {
+                    showError('직원 ID가 지정되지 않았습니다.');
+                    return;
+                }
+                
+                const employee = data.employees.find(emp => emp.id === employeeId && emp.active);
+                
+                if (!employee) {
+                    showError(`ID '${employeeId}'에 해당하는 직원을 찾을 수 없습니다.`);
+                    return;
+                }
+                
+                currentEmployee = employee;
+                displayEmployeeCard(employee);
+                
+            } catch (error) {
+                console.error('데이터 로드 오류:', error);
+                showError('데이터를 불러오는 중 오류가 발생했습니다.');
+            }
+        }
+        
+        // 직원 명함 표시
+        function displayEmployeeCard(employee) {
+            document.getElementById('employeeName').textContent = employee.name;
+            document.getElementById('employeeTitle').textContent = employee.title;
+            document.getElementById('phoneNumber').textContent = employee.phone;
+            document.getElementById('emailAddress').textContent = employee.email;
+            
+            document.getElementById('phoneLink').href = `tel:${employee.phone}`;
+            document.getElementById('emailLink').href = `mailto:${employee.email}`;
+            
+            document.title = `만원요리 최씨남매 - ${employee.name}`;
+            
+            // 로딩 숨기고 카드 표시
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('card').style.display = 'block';
+            
+            // 공유 버튼 표시
+            if (navigator.share || navigator.clipboard) {
+                document.getElementById('shareBtn').style.display = 'block';
+            }
+        }
+        
+        // 오류 표시
+        function showError(message) {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('errorMessage').textContent = message;
+            document.getElementById('error').style.display = 'block';
+        }
+        
+        // 연락처 저장
+        function saveContact() {
+            if (!currentEmployee) return;
+            
+            try {
+                const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:${currentEmployee.name}
+ORG:${companyData.fullName}
+TITLE:${companyData.name} ${currentEmployee.title}
+TEL;TYPE=CELL:${currentEmployee.phone}
+EMAIL;TYPE=WORK:${currentEmployee.email}
+URL:${companyData.website}
+URL;TYPE=YouTube:${companyData.social.youtube}
+URL;TYPE=Instagram:${companyData.social.instagram}
+ADR;TYPE=WORK:;;${companyData.address.street}, ${companyData.address.detail};;;;한국
+NOTE:${companyData.tagline} - ${companyData.name}
+END:VCARD`;
+
+                const userAgent = navigator.userAgent;
+                const isIOS = /iPad|iPhone|iPod/.test(userAgent);
+                const isAndroid = /Android/.test(userAgent);
+                
+                if (isIOS) {
+                    const dataUrl = 'data:text/vcard;charset=utf-8,' + encodeURIComponent(vcard);
+                    window.location.href = dataUrl;
+                } else {
+                    downloadVCard(vcard);
+                }
+                
+                showSaveMessage();
+                
+            } catch (error) {
+                console.error('연락처 저장 오류:', error);
+                alert('연락처 저장 중 오류가 발생했습니다. 다시 시도해주세요.');
+            }
+        }
+        
+        function downloadVCard(vcard) {
+            const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${currentEmployee.name}_${companyData.name}.vcf`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+        
+        function showSaveMessage() {
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.textContent = '저장 완료 ✓';
+            btn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+            
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = 'linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%)';
+            }, 3000);
+        }
+        
+        function shareCard() {
+            const shareUrl = window.location.href;
+            const shareText = `${companyData.name} ${currentEmployee.title} ${currentEmployee.name}님의 디지털 명함입니다.`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: `${companyData.name} - ${currentEmployee.name}`,
+                    text: shareText,
+                    url: shareUrl
+                }).catch(fallbackShare);
+            } else {
+                fallbackShare();
+            }
+        }
+        
+        function fallbackShare() {
+            const textArea = document.createElement('textarea');
+            textArea.value = window.location.href;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            const btn = document.getElementById('shareBtn');
+            const originalText = btn.textContent;
+            btn.textContent = '링크가 복사되었습니다 ✓';
+            
+            setTimeout(() => {
+                btn.textContent = originalText;
+            }, 2000);
+        }
+        
+        // 페이지 로드 시 실행
+        document.addEventListener('DOMContentLoaded', function() {
+            loadEmployeeData();
+        });
+    </script>
+</body>
+</html>
