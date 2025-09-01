@@ -15,41 +15,80 @@
         
         body {
             font-family: 'Inter', 'Noto Sans KR', sans-serif;
-            background: #0f172a;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            background-attachment: fixed;
             min-height: 100vh;
             padding: 2rem 1rem;
             line-height: 1.6;
+            animation: backgroundShift 10s ease-in-out infinite;
+        }
+        
+        @keyframes backgroundShift {
+            0%, 100% { background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%); }
+            50% { background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%); }
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 0 1rem;
         }
         
         .header {
             text-align: center;
             margin-bottom: 3rem;
+            animation: fadeInDown 1s ease-out;
+        }
+        
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .logo {
-            font-size: 2rem;
-            font-weight: 600;
+            font-size: 2.2rem;
+            font-weight: 700;
             color: #f59e0b;
             margin-bottom: 0.5rem;
             letter-spacing: -0.02em;
+            text-shadow: 0 4px 8px rgba(245, 158, 11, 0.3);
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #fde047 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: logoGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes logoGlow {
+            0%, 100% { text-shadow: 0 4px 8px rgba(245, 158, 11, 0.3); }
+            50% { text-shadow: 0 6px 12px rgba(245, 158, 11, 0.6); }
         }
         
         .tagline {
-            font-size: 1rem;
-            color: #94a3b8;
-            font-weight: 300;
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            font-weight: 400;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
         
         .divider {
-            width: 60px;
-            height: 2px;
-            background: #f59e0b;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 50%, #fde047 100%);
             margin: 2rem auto;
+            border-radius: 2px;
+            animation: dividerGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes dividerGlow {
+            0%, 100% { box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3); }
+            50% { box-shadow: 0 4px 16px rgba(245, 158, 11, 0.6); }
         }
         
         .section-title {
@@ -62,22 +101,37 @@
         
         .employee-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeIn 1s ease-out 0.6s both;
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
         
         .employee-card {
-            background: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 12px;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            border: 1px solid rgba(51, 65, 85, 0.8);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             text-decoration: none;
             display: block;
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
         .employee-card::before {
@@ -86,20 +140,36 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%);
+            height: 3px;
+            background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 50%, #fde047 100%);
             transform: translateX(-100%);
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
+        }
+        
+        .employee-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.1), transparent);
+            transition: left 0.6s ease;
         }
         
         .employee-card:hover::before {
             transform: translateX(0);
         }
         
+        .employee-card:hover::after {
+            left: 100%;
+        }
+        
         .employee-card:hover {
-            border-color: #f59e0b;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+            border-color: rgba(245, 158, 11, 0.6);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 24px rgba(245, 158, 11, 0.3);
+            background: linear-gradient(135deg, #334155 0%, #475569 100%);
         }
         
         .employee-info {
@@ -109,17 +179,19 @@
         }
         
         .employee-avatar {
-            width: 60px;
-            height: 60px;
-            background: #334155;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #334155 0%, #475569 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 2rem;
             color: #f59e0b;
-            font-weight: 600;
+            font-weight: 700;
             flex-shrink: 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(245, 158, 11, 0.3);
         }
         
         .employee-details {
@@ -127,23 +199,25 @@
         }
         
         .employee-name {
-            font-size: 1.125rem;
-            font-weight: 500;
+            font-size: 1.3rem;
+            font-weight: 600;
             color: #ffffff;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
         
         .employee-title {
-            font-size: 0.875rem;
-            color: #94a3b8;
-            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            color: #f59e0b;
+            margin-bottom: 0.75rem;
+            font-weight: 500;
         }
         
         .employee-contact {
             display: flex;
             flex-direction: column;
-            gap: 0.25rem;
-            font-size: 0.8rem;
+            gap: 0.5rem;
+            font-size: 0.9rem;
             color: #cbd5e1;
         }
         
@@ -178,9 +252,12 @@
         
         .footer {
             text-align: center;
-            margin-top: 4rem;
-            padding-top: 2rem;
+            margin-top: 5rem;
+            padding-top: 3rem;
             border-top: 1px solid #334155;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .company-info {
@@ -208,45 +285,203 @@
         }
         
         .quick-actions {
-            display: flex;
-            gap: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
             justify-content: center;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
+            margin-bottom: 4rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .action-button {
-            background: rgba(245, 158, 11, 0.1);
-            border: 1px solid #f59e0b;
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid rgba(245, 158, 11, 0.5);
             color: #f59e0b;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-size: 0.875rem;
-            font-weight: 500;
+            padding: 1.25rem 2rem;
+            border-radius: 16px;
+            font-size: 1rem;
+            font-weight: 600;
             text-decoration: none;
-            transition: all 0.2s ease;
-            display: inline-flex;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: center;
+            gap: 0.8rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+            min-height: 64px;
+            text-align: center;
+        }
+        
+        .action-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .action-button:hover::before {
+            left: 100%;
         }
         
         .action-button:hover {
-            background: #f59e0b;
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
             color: #0f172a;
-            transform: translateY(-1px);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.4);
+            border-color: #fbbf24;
         }
         
+        /* 모바일 최적화 */
         @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .quick-actions {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                margin-bottom: 3rem;
+            }
+            
+            .action-button {
+                padding: 1rem 1.5rem;
+                font-size: 0.95rem;
+                min-height: 56px;
+            }
+            
             .employee-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin-bottom: 3rem;
+            }
+            
+            .employee-card {
+                padding: 1.5rem;
+                min-height: 180px;
+            }
+            
+            .employee-avatar {
+                width: 70px;
+                height: 70px;
+                font-size: 1.75rem;
+            }
+            
+            .employee-name {
+                font-size: 1.2rem;
+            }
+            
+            .employee-title {
+                font-size: 0.95rem;
             }
             
             .logo {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
             
             .section-title {
-                font-size: 1.25rem;
+                font-size: 1.3rem;
+            }
+        }
+        
+        /* 작은 모바일 디바이스 */
+        @media (max-width: 480px) {
+            body {
+                padding: 1rem 0.5rem;
+            }
+            
+            .container {
+                padding: 0 0.5rem;
+            }
+            
+            .header {
+                margin-bottom: 2rem;
+            }
+            
+            .quick-actions {
+                gap: 0.75rem;
+                margin-bottom: 2rem;
+            }
+            
+            .action-button {
+                padding: 0.875rem 1rem;
+                font-size: 0.9rem;
+                gap: 0.6rem;
+            }
+            
+            .employee-grid {
+                gap: 1rem;
+            }
+            
+            .employee-card {
+                padding: 1.25rem;
+                min-height: 160px;
+                border-radius: 16px;
+            }
+            
+            .employee-avatar {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .employee-name {
+                font-size: 1.1rem;
+            }
+            
+            .employee-title {
+                font-size: 0.9rem;
+            }
+            
+            .employee-contact {
+                font-size: 0.85rem;
+                gap: 0.4rem;
+            }
+        }
+        
+        /* 태블릿 최적화 */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 800px;
+            }
+            
+            .employee-grid {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 800px;
+            }
+        }
+        
+        /* 대형 데스크톱 */
+        @media (min-width: 1400px) {
+            .quick-actions {
+                grid-template-columns: repeat(3, 1fr);
+                max-width: 1200px;
+            }
+            
+            .employee-grid {
+                grid-template-columns: repeat(3, 1fr);
+                max-width: 1200px;
             }
         }
     </style>
@@ -260,6 +495,10 @@
         </header>
         
         <div class="quick-actions">
+            <a href="go-hyesook.html" class="action-button">
+                <span>👑</span>
+                <span>고혜숙 대표 명함</span>
+            </a>
             <a href="choi-hyunmok.html" class="action-button">
                 <span>📇</span>
                 <span>최현목 총괄대표 명함</span>
@@ -267,6 +506,10 @@
             <a href="lee-jinyong.html" class="action-button">
                 <span>📇</span>
                 <span>이진용 운영본부 명함</span>
+            </a>
+            <a href="lee-jui.html" class="action-button">
+                <span>🎨</span>
+                <span>이주이 크리에이터 명함</span>
             </a>
             <a href="https://www.manwonyori.com" target="_blank" class="action-button">
                 <span>🌐</span>

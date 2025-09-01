@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>만원요리 최씨남매 - 이진용</title>
+    <title>만원요리 최씨남매 - 이주이</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
@@ -15,7 +15,7 @@
         
         body {
             font-family: 'Inter', 'Noto Sans KR', sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
             background-attachment: fixed;
             min-height: 100vh;
             display: flex;
@@ -23,6 +23,12 @@
             justify-content: center;
             padding: 1rem;
             line-height: 1.6;
+            animation: backgroundShift 8s ease-in-out infinite;
+        }
+        
+        @keyframes backgroundShift {
+            0%, 100% { background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%); }
+            50% { background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%); }
         }
         
         .card {
@@ -56,57 +62,136 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%);
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6 0%, #06b6d4 50%, #10b981 100%);
+            animation: gradientShift 4s ease-in-out infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { 
+                background: linear-gradient(90deg, #3b82f6 0%, #06b6d4 50%, #10b981 100%);
+                opacity: 1;
+            }
+            50% { 
+                background: linear-gradient(90deg, #06b6d4 0%, #10b981 50%, #3b82f6 100%);
+                opacity: 0.8;
+            }
+        }
+        
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            animation: shine 6s ease-in-out infinite;
+        }
+        
+        @keyframes shine {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
         }
         
         .header {
             text-align: center;
             margin-bottom: 2.5rem;
+            position: relative;
+            z-index: 1;
         }
         
         .brand-name {
-            font-size: 1.25rem;
-            font-weight: 500;
-            color: #f59e0b;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #3b82f6;
             margin-bottom: 0.5rem;
             letter-spacing: -0.02em;
+            text-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 50%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .tagline {
-            font-size: 0.875rem;
-            color: #94a3b8;
+            font-size: 0.9rem;
+            color: #cbd5e1;
             font-weight: 300;
             margin-bottom: 2rem;
         }
         
         .divider {
-            width: 40px;
-            height: 1px;
-            background: #f59e0b;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6 0%, #06b6d4 100%);
             margin: 0 auto 2rem;
+            border-radius: 1px;
+            animation: dividerGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes dividerGlow {
+            0%, 100% { box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3); }
+            50% { box-shadow: 0 4px 16px rgba(59, 130, 246, 0.6); }
         }
         
         .name-section {
             text-align: center;
+            position: relative;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .company {
-            font-size: 0.875rem;
-            color: #cbd5e1;
+            font-size: 0.9rem;
+            color: #e2e8f0;
             font-weight: 400;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
         }
         
         .name {
-            font-size: 1.125rem;
+            font-size: 1.3rem;
             color: #ffffff;
-            font-weight: 500;
+            font-weight: 600;
             letter-spacing: -0.02em;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .title {
+            font-size: 1rem;
+            color: #3b82f6;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+        
+        .department {
+            font-size: 0.85rem;
+            color: #06b6d4;
+            margin-top: 0.25rem;
+            font-weight: 500;
         }
         
         .contact-section {
             margin-top: 2.5rem;
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 0.8s ease-out 0.4s both;
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
         
         .contact-item {
@@ -124,13 +209,13 @@
         
         .contact-item:hover,
         .contact-item:focus {
-            color: #f59e0b;
-            background: rgba(245, 158, 11, 0.15);
+            color: #3b82f6;
+            background: rgba(59, 130, 246, 0.15);
             margin: 0 -1.25rem;
             padding-left: 1.25rem;
             padding-right: 1.25rem;
-            border-color: rgba(245, 158, 11, 0.4);
-            outline: 2px solid rgba(245, 158, 11, 0.6);
+            border-color: rgba(59, 130, 246, 0.4);
+            outline: 2px solid rgba(59, 130, 246, 0.6);
             outline-offset: 3px;
             transform: translateX(6px) scale(1.02);
         }
@@ -140,11 +225,12 @@
         }
         
         .contact-icon {
-            width: 16px;
+            width: 20px;
             text-align: center;
-            color: #f59e0b;
-            margin-right: 1rem;
-            font-size: 0.875rem;
+            color: #3b82f6;
+            margin-right: 1.25rem;
+            font-size: 1rem;
+            filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3));
         }
         
         .contact-content {
@@ -155,66 +241,77 @@
             display: block;
             font-size: 0.75rem;
             color: #94a3b8;
-            margin-bottom: 0.125rem;
+            margin-bottom: 0.2rem;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.1em;
+            font-weight: 500;
         }
         
         .contact-value {
             color: #e2e8f0;
+            font-weight: 500;
         }
         
         .social-section {
             margin-top: 2rem;
             padding-top: 2rem;
-            border-top: 1px solid #334155;
+            border-top: 1px solid rgba(51, 65, 85, 0.5);
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 0.8s ease-out 0.6s both;
         }
         
         .social-links {
             display: flex;
-            gap: 1.5rem;
+            gap: 2rem;
             justify-content: center;
         }
         
         .social-link {
-            font-size: 0.875rem;
+            font-size: 0.9rem;
             color: #94a3b8;
             text-decoration: none;
-            font-weight: 400;
-            transition: color 0.2s ease;
-            padding: 0.5rem 0;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.75rem 0;
+            border-radius: 4px;
         }
         
         .social-link:hover,
         .social-link:focus {
-            color: #f59e0b;
-            outline: 2px solid #f59e0b;
+            color: #3b82f6;
+            outline: 2px solid rgba(59, 130, 246, 0.5);
             outline-offset: 2px;
+            transform: translateY(-2px);
         }
         
         .address {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: #94a3b8;
-            line-height: 1.4;
+            line-height: 1.5;
             text-align: center;
             margin-top: 1.5rem;
-            padding: 1rem;
-            background: rgba(51, 65, 85, 0.3);
-            border-radius: 8px;
-            border: 1px solid #334155;
-            transition: all 0.2s ease;
+            padding: 1.25rem;
+            background: rgba(51, 65, 85, 0.4);
+            border-radius: 12px;
+            border: 1px solid rgba(51, 65, 85, 0.6);
+            transition: all 0.3s ease;
             text-decoration: none;
             cursor: pointer;
             display: block;
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 0.8s ease-out 0.8s both;
         }
         
         .address:hover,
         .address:focus {
-            background: rgba(245, 158, 11, 0.1);
-            border-color: #f59e0b;
-            color: #cbd5e1;
-            outline: 2px solid #f59e0b;
+            background: rgba(59, 130, 246, 0.15);
+            border-color: rgba(59, 130, 246, 0.5);
+            color: #e2e8f0;
+            outline: 2px solid rgba(59, 130, 246, 0.5);
             outline-offset: 2px;
+            transform: translateY(-2px);
         }
         
         .address-line {
@@ -230,8 +327,8 @@
             margin-top: 2.5rem;
             width: 100%;
             padding: 1.2rem;
-            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
-            color: #0f172a;
+            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+            color: #ffffff;
             border: none;
             border-radius: 16px;
             font-size: 1rem;
@@ -239,16 +336,19 @@
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             letter-spacing: 0.025em;
-            box-shadow: 0 6px 12px -2px rgba(245, 158, 11, 0.4);
+            box-shadow: 0 6px 12px -2px rgba(59, 130, 246, 0.4);
+            position: relative;
+            z-index: 1;
             min-height: 50px;
+            animation: fadeIn 0.8s ease-out 1s both;
         }
         
         .save-contact:hover,
         .save-contact:focus {
-            background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
-            outline: 2px solid #f59e0b;
+            background: linear-gradient(135deg, #2563eb 0%, #0891b2 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(59, 130, 246, 0.4);
+            outline: 2px solid rgba(59, 130, 246, 0.5);
             outline-offset: 2px;
         }
         
@@ -269,16 +369,20 @@
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             letter-spacing: 0.025em;
+            position: relative;
+            z-index: 1;
             min-height: 50px;
+            animation: fadeIn 0.8s ease-out 1.2s both;
         }
         
         .share-contact:hover,
         .share-contact:focus {
             background: rgba(51, 65, 85, 0.8);
-            border-color: #f59e0b;
-            color: #f59e0b;
-            outline: 2px solid #f59e0b;
+            border-color: rgba(59, 130, 246, 0.5);
+            color: #3b82f6;
+            outline: 2px solid rgba(59, 130, 246, 0.5);
             outline-offset: 2px;
+            transform: translateY(-1px);
         }
         
         /* 모바일 최적화 - 통일된 반응형 디자인 */
@@ -297,12 +401,23 @@
             }
             
             .brand-name {
+                font-size: 1.25rem;
+            }
+            
+            .name {
                 font-size: 1.15rem;
+            }
+            
+            .title {
+                font-size: 0.95rem;
+            }
+            
+            .department {
+                font-size: 0.8rem;
             }
             
             .contact-item {
                 padding: 1.1rem 0;
-                font-size: 0.95rem;
             }
             
             .contact-icon {
@@ -340,12 +455,16 @@
                 font-size: 1.1rem;
             }
             
-            .tagline {
-                font-size: 0.8rem;
-            }
-            
             .name {
                 font-size: 1.05rem;
+            }
+            
+            .title {
+                font-size: 0.9rem;
+            }
+            
+            .department {
+                font-size: 0.75rem;
             }
             
             .contact-section {
@@ -354,7 +473,6 @@
             
             .contact-item {
                 padding: 1rem 0;
-                font-size: 0.9rem;
             }
             
             .contact-icon {
@@ -381,7 +499,7 @@
             }
             
             .social-link {
-                font-size: 0.8rem;
+                font-size: 0.85rem;
             }
             
             .address {
@@ -413,6 +531,10 @@
             
             .brand-name {
                 font-size: 1rem;
+            }
+            
+            .tagline {
+                font-size: 0.8rem;
             }
             
             .name {
@@ -469,16 +591,18 @@
             <div class="divider"></div>
             <div class="name-section">
                 <div class="company">주식회사 값진한끼</div>
-                <div class="name">운영본부 이진용</div>
+                <div class="name">이주이</div>
+                <div class="title">사원</div>
+                <div class="department">크리에이터</div>
             </div>
         </div>
         
         <div class="contact-section">
-            <a href="tel:010-9770-2885" class="contact-item">
+            <a href="tel:010-5769-7178" class="contact-item">
                 <div class="contact-icon">📞</div>
                 <div class="contact-content">
                     <span class="contact-label">전화</span>
-                    <div class="contact-value">010-9770-2885</div>
+                    <div class="contact-value">010-5769-7178</div>
                 </div>
             </a>
             
@@ -528,16 +652,16 @@
             try {
                 const vcard = `BEGIN:VCARD
 VERSION:3.0
-FN:이진용
+FN:이주이
 ORG:주식회사 값진한끼
-TITLE:만원요리 최씨남매 운영본부
-TEL;TYPE=CELL:010-9770-2885
+TITLE:만원요리 최씨남매 크리에이터 사원
+TEL;TYPE=CELL:010-5769-7178
 EMAIL;TYPE=WORK:we@manwonyori.com
 URL:https://www.manwonyori.com
 URL;TYPE=YouTube:https://www.youtube.com/@만원요리최씨남매
 URL;TYPE=Instagram:https://www.instagram.com/knammae/
 ADR;TYPE=WORK:;;경기도 파주시 경의로 1246, 11층 1105-19호;와동동;;;한국
-NOTE:만원으로 즐기는 따뜻한 한 끼 - 만원요리 최씨남매
+NOTE:만원으로 즐기는 따뜻한 한 끼 - 만원요리 최씨남매 크리에이터 팀
 END:VCARD`;
 
                 const userAgent = navigator.userAgent;
@@ -564,7 +688,7 @@ END:VCARD`;
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = '이진용_만원요리최씨남매.vcf';
+            a.download = '이주이_만원요리최씨남매.vcf';
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -579,15 +703,15 @@ END:VCARD`;
             
             setTimeout(() => {
                 btn.textContent = originalText;
-                btn.style.background = 'linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%)';
+                btn.style.background = 'linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%)';
             }, 3000);
         }
         
         function shareCard() {
             if (navigator.share) {
                 navigator.share({
-                    title: '만원요리 최씨남매 - 이진용',
-                    text: '만원요리 최씨남매 운영본부 이진용입니다. 디지털 명함을 확인해보세요!',
+                    title: '만원요리 최씨남매 - 이주이',
+                    text: '만원요리 최씨남매 크리에이터 이주이입니다. 디지털 명함을 확인해보세요!',
                     url: window.location.href
                 }).catch(fallbackShare);
             } else {
