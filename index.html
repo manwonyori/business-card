@@ -551,15 +551,31 @@
         // 직원 데이터 로드 및 표시
         async function loadEmployees() {
             try {
+                console.log('Fetching employees.json...');
                 const response = await fetch('./data/employees.json');
+                console.log('Response status:', response.status);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
                 const data = await response.json();
+                console.log('Data loaded:', data);
                 
                 displayEmployees(data.employees.filter(emp => emp.active));
                 
             } catch (error) {
                 console.error('데이터 로드 오류:', error);
+                console.error('Error details:', error.message);
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('error').style.display = 'block';
+                
+                // 더 자세한 에러 메시지 표시
+                const errorDiv = document.getElementById('error');
+                errorDiv.innerHTML = `
+                    직원 정보를 불러오는 데 실패했습니다.<br>
+                    <small style="color: #94a3b8;">에러: ${error.message}</small>
+                `;
             }
         }
         
